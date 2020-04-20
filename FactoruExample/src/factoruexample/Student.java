@@ -20,7 +20,7 @@ public class Student extends User {
   private static ArrayList <String> GroupNameList;
   private static ArrayList <String> NameList;
   private static ArrayList <String> SurNameList;
-   public Student () {
+   public Student () throws IOException {
        
        this.setName(User.generateName());
        this.setId(User.generateID());
@@ -44,7 +44,7 @@ public class Student extends User {
     }
        
        public static String generateGroupName () {
-        
+        generateGroupNameList();
         double rn = Math.random()*GroupNameList.size();
         
          int rni = (int) Math.floor(rn) ;
@@ -72,7 +72,7 @@ public class Student extends User {
     }
         
         public static String generateSurName () {
-        
+        generateSurNameList();
         double rn = Math.random()*SurNameList.size();
         
          int rni = (int) Math.floor(rn) ;

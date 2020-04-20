@@ -18,16 +18,18 @@ public class Teacher extends User {
       static ImportPeople ip;
    public String groupName ;
   private static ArrayList <String> DepartmentList;
-  private static ArrayList <String> NameList;
+  
   private static ArrayList <String> SurNameList;
-   private static ArrayList <String> patronimsList ;
-   public Teacher () {
+   private static ArrayList <String> patronimsListforMen ;
+   private static ArrayList <String> patronimsListforWomen ;
+   public Teacher () throws IOException {
        
        this.setName(User.generateName());
        this.setId(User.generateID());
        this.setDepartment(generateDepartment());
        this.setSurname(generateSurName());
        this.setPatronim(generatePatronim());
+      
    }
     public String department;
       @Override
@@ -46,7 +48,7 @@ public class Teacher extends User {
     }
        
        public static String generateDepartment () {
-        
+        generateDepartmentList();
         double rn = Math.random()*DepartmentList.size();
         
          int rni = (int) Math.floor(rn) ;
@@ -74,7 +76,7 @@ public class Teacher extends User {
     }
          
         public static String generateSurName () {
-        
+        generateSurNameList();
         double rn = Math.random()*SurNameList.size();
         
          int rni = (int) Math.floor(rn) ;
@@ -84,28 +86,28 @@ public class Teacher extends User {
          return SurNameList.get(rni);
 }
      
-        public static void generatePatronimList() throws IOException {
+        public static void generatePatronimListForMen() throws IOException {
             String pat ="";
             ip = new ImportPeople();
-            ip.ImportNames();;
+            ip.ImportNames();
           
-             patronimsList = new ArrayList<String> ();
+             patronimsListforMen = new ArrayList<String> ();
             for (String names: ip.names) {
                 if  (  (names.charAt(names.length()-1) != 'a') && (names.charAt(names.length()-1) != 'я')) {
                        switch (names.charAt(names.length()-1)) {
-                           case ('н') : patronimsList.add(names+"ович");
+                           case ('н') : patronimsListforMen.add(names+"ович");
                            break;
-                           case ('р') : patronimsList.add(names+"ович");
+                           case ('р') : patronimsListforMen.add(names+"ович");
                            break;
-                           case ('в') : patronimsList.add(names+"ович");
+                           case ('в') : patronimsListforMen.add(names+"ович");
                            break;
-                           case ('с') : patronimsList.add(names+"ович");
+                           case ('с') : patronimsListforMen.add(names+"ович");
                            break;
                             case('й') : { 
                                for (int i = 0; i< names.length()-1; i++) {
                                    pat+=names.charAt(i);
                                }
-                               patronimsList.add(pat+"евич"); }
+                               patronimsListforMen.add(pat+"евич"); }
                             pat="";
                                break; 
                            
@@ -116,15 +118,130 @@ public class Teacher extends User {
         }
            
 }
-        public static String generatePatronim () {
+        public static void generatePatronimListForWomen() throws IOException {
+            String pat ="";
+            ip = new ImportPeople();
+            ip.ImportNames();
+          
+             patronimsListforWomen = new ArrayList<String> ();
+            for (String names: ip.names) {
+                if  (  (names.charAt(names.length()-1) != 'a') && (names.charAt(names.length()-1) != 'я')) {
+                       switch (names.charAt(names.length()-1)) {
+                           case ('н') : patronimsListforWomen.add(names+"овна");
+                           break;
+                           case ('р') : patronimsListforWomen.add(names+"овна");
+                           break;
+                           case ('в') : patronimsListforWomen.add(names+"овна");
+                           break;
+                           case ('с') : patronimsListforWomen.add(names+"овна");
+                           break;
+                            case('й') : { 
+                               for (int i = 0; i< names.length()-1; i++) {
+                                   pat+=names.charAt(i);
+                               }
+                               patronimsListforWomen.add(pat+"евна"); }
+                            pat="";
+                               break; 
+                           
+                               
+                }
+                       
+                }    
+        }
+           
+}
         
-        double rn = Math.random()*patronimsList.size();
+        public static String generatePatronim () throws IOException {
+       generateNameList();
+        String p="";
+      
+         //generateName();
+        generatePatronimListForWomen();
+        generatePatronimListForMen();
+       
+         switch (User.NameList.get(User.rni).charAt(User.NameList.get(User.rni).length()-1)) {
+              case('а') : {
+         
+        double rn = Math.random()*patronimsListforWomen.size();
         
          int rni = (int) Math.floor(rn) ;
           if (rni == 12) {
               rni = 11;
           }
-         return SurNameList.get(rni);
+         p = patronimsListforWomen.get(rni); 
+              }
+              break;
+       
+              case('я') : {
+         
+        double rn = Math.random()*patronimsListforWomen.size();
+        
+         int rni = (int) Math.floor(rn) ;
+          if (rni == 12) {
+              rni = 11;
+          }
+         p = patronimsListforWomen.get(rni); 
+              }
+              break;
+         case'в' : {
+         
+        double rn = Math.random()*patronimsListforMen.size();
+        
+         int rni = (int) Math.floor(rn) ;
+          if (rni == 12) {
+              rni = 11;
+          }
+         p = patronimsListforMen.get(rni); 
+              }
+              break;
+
+         case'й' : {
+         
+        double rn = Math.random()*patronimsListforMen.size();
+        
+         int rni = (int) Math.floor(rn) ;
+          if (rni == 12) {
+              rni = 11;
+          }
+         p = patronimsListforMen.get(rni); 
+              }
+              break;
+              case'н' : {
+         
+        double rn = Math.random()*patronimsListforMen.size();
+        
+         int rni = (int) Math.floor(rn) ;
+          if (rni == 12) {
+              rni = 11;
+          }
+         p = patronimsListforMen.get(rni); 
+              }
+              break;
+              case'с' : {
+         
+        double rn = Math.random()*patronimsListforMen.size();
+        
+         int rni = (int) Math.floor(rn) ;
+          if (rni == 12) {
+              rni = 11;
+          }
+         p = patronimsListforMen.get(rni); 
+              }
+              break;
+              case'р' : {
+         
+        double rn = Math.random()*patronimsListforMen.size();
+        
+         int rni = (int) Math.floor(rn) ;
+          if (rni == 12) {
+              rni = 11;
+          }
+         p = patronimsListforMen.get(rni); 
+              }
+              break;
 }
 
+         return p;
+        
+}
 }

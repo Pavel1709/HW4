@@ -44,7 +44,7 @@ public class DataManipulatorTest {
     @Test
     public void testInitialize() throws IOException {
         System.out.println("initialize");
-        DataManipulator instance = new DataManipulator();
+        Manipulator instance = new Manipulator();
         instance.initialize();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -54,9 +54,9 @@ public class DataManipulatorTest {
      * Test of generateData method, of class DataManipulator.
      */
     @Test
-    public void testGenerateData() {
+    public void testGenerateData() throws IOException {
         System.out.println("generateData");
-        DataManipulator instance = new DataManipulator();
+        Manipulator instance = new Manipulator();
         instance.generateData();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

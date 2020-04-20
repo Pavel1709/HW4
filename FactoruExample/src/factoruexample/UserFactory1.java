@@ -5,17 +5,18 @@
  */
 package factoruexample;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
  *
  * @author pavel1709
  */
-public class UserFactory {
-    public UserFactory() {
+public class UserFactory1 {
+    public UserFactory1() {
         
     }
-    public User createUser(double rn) {
+    public User createUser(double rn) throws IOException {
         if (rn < 0.75) {
             return new Student() ;
         }
@@ -24,12 +25,16 @@ public class UserFactory {
         }
     }
     
-    public ArrayList<User>  createUsers(int num_of_users) {
+    public ArrayList<User>  createUsers(int num_of_users) throws IOException {
         ArrayList<User> usersArray= new ArrayList<User>();
          for (int i = 0; i < num_of_users; i++) {
         double rn = Math.random() ;
         usersArray.add(createUser(rn));
+        
     }
+         for( User u: usersArray) {
+             System.out.println(u.toString());
+         }
          return usersArray;
     }
 

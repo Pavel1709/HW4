@@ -16,13 +16,13 @@ import java.util.*;
  */
 public abstract class User {
    public int id;
-    public String name;
-    public String surname;
-    public String patronim;
+    public  String name;
+    public  String surname;
+    public  String patronim;
     
     public static int globalID = 0;
     
-    private static ArrayList<String> NameList;
+    public static ArrayList<String> NameList;
     public int getId() {
         return id;
     }
@@ -66,12 +66,12 @@ public abstract class User {
        NameList.add(ip.names[i] ); 
    }
     }
-
-    public static String generateName () {
-    
+ static int rni;
+    public static String generateName () throws IOException {
+    generateNameList();
         double rn = Math.random()*NameList.size();
         
-         int rni = (int) Math.floor(rn) ;
+          rni = (int) Math.floor(rn) ;
           if (rni == 29) {
               rni = 28;
           }

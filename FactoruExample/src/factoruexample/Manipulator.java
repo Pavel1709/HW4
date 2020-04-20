@@ -12,13 +12,13 @@ import java.util.ArrayList;
  *
  * @author pavel1709
  */
-public class DataManipulator {
+public class Manipulator {
     ArrayList<User> users ;
    // ArrayList<Books> Books;
     ArrayList<Records> Records;
     ArrayList<Journal> Journals;
     Student st;
-            public DataManipulator() {
+            public Manipulator() {
                 
             }
             public void initialize() throws IOException {
@@ -30,18 +30,22 @@ public class DataManipulator {
                 
                 Teacher.generateDepartmentList();
                 Teacher.generateSurNameList();
-                Teacher.generatePatronimList();
+                Teacher.generatePatronimListForMen();
+                Teacher.generatePatronimListForWomen();
                 
             }
             
-            public void generateData() {
+            public void generateData() throws IOException {
                // UserFactory UF = new UserFactory();
              //   users = UF.createUsers(20); 
                 JournalDataManipulator JDM = new JournalDataManipulator();
                 Journals = JDM.createJournals();
                 BookDataManipulator BDM = new BookDataManipulator();
                 BDM.createTestBook();
+                
                 System.out.println("VSE");
+                UserFactory1 UF = new UserFactory1();
+                UF.createUsers(100);
             }
             
             

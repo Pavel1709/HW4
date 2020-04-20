@@ -19,7 +19,7 @@ public class FactoruExample {
     public static void main(String[] args) throws IOException {
     
      
-      DataManipulator DM= new DataManipulator();
+     Manipulator DM= new Manipulator();
       DM.generateData();
       DM.initialize();
 
